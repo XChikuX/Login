@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {View, Text} from 'react-native';
+import {Header} from './component';
 
 
 
@@ -12,6 +13,7 @@ class App extends Component {
     {
         return (
             <View>
+                <Header>Login \m/</Header>
                 <Text>App pu la</Text>
             </View>
         );

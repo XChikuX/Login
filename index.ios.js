@@ -9,4 +9,4 @@ import {AppRegistry} from 'react-native';
 import App from './src/App';
 
 
-AppRegistry.registerComponent('Login', () => App);
+AppRegistry.registerComponent('Login', () => App);  // MAKE SURE 'Login' Is not changed
