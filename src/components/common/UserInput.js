@@ -8,7 +8,7 @@ const UserInput = (props) => {
   return (
       <View style={styles.containerStyle}>
         <Text style={styles.labelStyle}>{props.label}</Text>
-        <TextInput onChangeText={props.onChangeText} value={props.value}  style={styles.inputStyle}/>
+        <TextInput autoCorrect={false} onChangeText={props.onChangeText} value={props.value}  style={styles.inputStyle}/>
       </View>
   );
 }
