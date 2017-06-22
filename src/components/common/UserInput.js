@@ -20,9 +20,7 @@ const styles = {
         paddingLeft: 5,
         fontSize: 18,
         lineHeight: 23,
-        flex: 2,
-        height:20,
-        width:75
+        flex: 2
     },
     labelStyle: {
         fontSize: 18,
@@ -34,7 +32,7 @@ const styles = {
         height: 40,
         flex: 1,
         flexDirection: 'row',
-        align: 'center'
+        alignItems: 'center'
     }
 
 };
