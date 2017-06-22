@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {View, Text} from 'react-native';
 import Firebase from 'firebase'; //  THIS IMPORT SHOULD BE ABOVE ALL PERSONAL IMPORTS :D
 import {Header} from './components/';
-import {LoginForm} from './components/LoginForm';
+import LoginForm from './components/LoginForm';
 
 
 
