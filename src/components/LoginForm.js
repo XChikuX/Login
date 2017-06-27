@@ -8,7 +8,7 @@ import {Card, CardSection, UserInput} from './';
 
 
 
-initiateLogin()
+function initiateLogin()
 {
     const {email, password, error} = this.state;
     this.setState({error: ''});
