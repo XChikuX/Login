@@ -3,7 +3,7 @@
  */
 import React, {Component} from 'react';
 import {View, Text} from 'react-native';
-import Firebase from 'firebase'; //  THIS IMPORT SHOULD BE ABOVE ALL PERSONAL IMPORTS :D
+import firebase from 'firebase'; //  THIS IMPORT SHOULD BE ABOVE ALL PERSONAL IMPORTS :D
 import {Header} from './components/';
 import LoginForm from './components/LoginForm';
 
@@ -14,7 +14,7 @@ import LoginForm from './components/LoginForm';
 class App extends Component {
 
     componentWillMount(){
-        Firebase.initializeApp(
+        firebase.initializeApp(
             {
                 apiKey: "AIzaSyCSnKNgPEu4A_nOKS2WW7FCLiUWNhxgCjE",
                 authDomain: "login-957c6.firebaseapp.com",

@@ -3,29 +3,33 @@
  */
 import React, {Component} from 'react';
 import { Button, TextInput, Text} from 'react-native';
-import Firebase from 'firebase';
+import firebase from 'firebase';
 import {Card, CardSection, UserInput} from './';
 
 
 
-function initiateLogin()
-{
-    const {email, password, error} = this.state;
-    this.setState({error: ''});
+class LoginForm extends Component {
 
-    Firebase.auth().signInWithEmailAndPassword(email, password)
+
+    initiateLogin()
+    {
+    const {email, password, error, counter} = this.state;
+    this.setState({error: 'Testing '+ {counter}});
+
+    firebase.auth().signInWithEmailAndPassword(email, password)
         .catch( () => {
-                Firebase.auth().createUserWithEmailAndPassword(email, password)
+                firebase.auth().createUserWithEmailAndPassword(email, password)
                     .catch(() => {
-                        error.setState({error: "Invalid attempt. Please try again using a different USN"});
-                    }
-                );
+                            error.setState({error: 'Invalid attempt. Please try again, use a different USN'});
+                            counter.setState({counter: counter + 1});
+                        }
+                    );
             }
         )
-}
+    }
 
-class LoginForm extends Component {
-    state = {email: '', password: '', error: ''};
+
+    state = {email: '', password: '', error: '', counter: 1};
     // NOTE instead of {text: text} in line 16(subject to change). We can just use {text}, thanks to ES6
 
     // ALSO onChangeText={}  << The variable before the arrow can be anything. It indicates the text that is entered.
@@ -36,11 +40,11 @@ class LoginForm extends Component {
         return(
             <Card>
                 <CardSection>
-                    <UserInput value={this.state.email} label="Email" onChangeText={email => this.setState({ email: email })} placeholder="user@email-provider.com"/>
+                    <UserInput value={this.state.email} label="Email" onChangeText={email => this.setState({ email: email })} placeholder="user@email.com"/>
                 </CardSection>
 
                 <CardSection>
-                    <UserInput value={this.state.password} label="Password" onChangeText={password => this.setState({password})} placeholder="P@$$w0rD!" secureTextEntry={true}/>
+                    <UserInput value={this.state.password} label="Password" onChangeText={password => this.setState({password})} placeholder="P@$$w0rD" secureTextEntry={true}/>
                 </CardSection>
 
                 <Text style={styles.errorTextStyle}>
