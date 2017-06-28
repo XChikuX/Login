@@ -13,23 +13,41 @@ class LoginForm extends Component {
 
     initiateLogin()
     {
-    const {email, password, error, counter} = this.state;
-    this.setState({error: 'Testing '+ {counter}});
+    const {email, password, error, counter, loading} = this.state;
+    this.setState({
+        error: 'Testing '+ {counter},
+        loading: true
+    });
 
     firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(this.onLoginSuccess.bind(this))
         .catch( () => {
                 firebase.auth().createUserWithEmailAndPassword(email, password)
-                    .catch(() => {
-                            error.setState({error: 'Invalid attempt. Please try again, use a different USN'});
-                            counter.setState({counter: counter + 1});
-                        }
+                    .then(this.onLoginSuccess.bind(this))
+                    .catch(
+                            this.onLoginFail.bind(this)
                     );
             }
         )
     }
 
+    onLoginFail() {
+        this.setState({error: 'Invalid attempt. Please try again, use a different USN'});
+        this.setState({counter: this.state.counter + 1, loading: false});
+    }
 
-    state = {email: '', password: '', error: '', counter: 1};
+    onLoginSuccess() {
+
+        this.setState({
+            email: '',
+            password: '',
+            loading: false,
+            error: ''
+    });
+    }
+
+
+    state = {email: '', password: '', error: '', counter: 1, loading: false};
     // NOTE instead of {text: text} in line 16(subject to change). We can just use {text}, thanks to ES6
 
     // ALSO onChangeText={}  << The variable before the arrow can be anything. It indicates the text that is entered.
